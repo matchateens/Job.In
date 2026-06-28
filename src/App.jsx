@@ -13,6 +13,7 @@ import {
   trackVisitor,
   getVisitorCount,
 } from './utils/firestoreStorage';
+import { AdMob, BannerAdSize, BannerAdPosition } from '@capacitor-community/admob';
 
 function App() {
   const { user, logout } = useAuth();
@@ -39,6 +40,32 @@ function App() {
       setVisitorCount(count);
     };
     handleVisitorTracking();
+  }, []);
+
+  // Initialize Google AdMob Banner Ad (Capacitor native only)
+  useEffect(() => {
+    const initializeAdMob = async () => {
+      try {
+        await AdMob.initialize({
+          requestTrackingAuthorization: true,
+        });
+
+        await AdMob.showBanner({
+          adId: 'ca-app-pub-3940256099942544/6300978111', // Test Banner ID
+          adSize: BannerAdSize.BANNER,
+          position: BannerAdPosition.BOTTOM_CENTER,
+          margin: 60, // Gives spacing from the bottom edge
+          isTesting: true
+        });
+        console.log('AdMob successfully initialized & banner shown.');
+      } catch (err) {
+        console.error('Failed to load AdMob:', err);
+      }
+    };
+
+    if (window.Capacitor) {
+      initializeAdMob();
+    }
   }, []);
 
   // Sync theme class to body

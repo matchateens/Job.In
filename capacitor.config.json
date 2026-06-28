@@ -1,5 +1,10 @@
 {
   "appId": "com.jobin.app",
   "appName": "Job.In",
-  "webDir": "dist"
+  "webDir": "dist",
+  "plugins": {
+    "AdMob": {
+      "initializeOnJS": true
+    }
+  }
 }
