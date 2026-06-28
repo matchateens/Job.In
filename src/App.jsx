@@ -51,11 +51,11 @@ function App() {
         });
 
         await AdMob.showBanner({
-          adId: 'ca-app-pub-3940256099942544/6300978111', // Test Banner ID
+          adId: 'ca-app-pub-9743604826123010/5552342018', // Production Banner Ad Unit ID
           adSize: BannerAdSize.BANNER,
           position: BannerAdPosition.BOTTOM_CENTER,
           margin: 60, // Gives spacing from the bottom edge
-          isTesting: true
+          isTesting: false
         });
         console.log('AdMob successfully initialized & banner shown.');
       } catch (err) {
