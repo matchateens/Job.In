@@ -14,6 +14,7 @@ import {
   getVisitorCount,
 } from './utils/firestoreStorage';
 import { AdMob, BannerAdSize, BannerAdPosition } from '@capacitor-community/admob';
+import AdSenseBanner from './components/AdSenseBanner';
 
 function App() {
   const { user, logout } = useAuth();
@@ -330,6 +331,9 @@ function App() {
           </div>
         </div>
       </section>
+
+      {/* ── Adsense Banner (Web Only) ── */}
+      <AdSenseBanner slotId="5552342018" />
 
       {/* ── Filters & Toggle ── */}
       <section className="glass-card controls-bar">
