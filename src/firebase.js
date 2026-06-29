@@ -20,5 +20,10 @@ export const googleProvider = new GoogleAuthProvider();
 export const db = getFirestore(app);
 export const analytics = getAnalytics(app);
 
+// Web Client ID untuk Google Sign-In Native di perangkat mobile.
+// Anda dapat mengganti nilai ini di sini atau menggunakan file .env (VITE_GOOGLE_WEB_CLIENT_ID).
+export const googleWebClientId = import.meta.env.VITE_GOOGLE_WEB_CLIENT_ID || "247458316538-s7ladumf709rvin64catc51edv76lad2.apps.googleusercontent.com";
+
 export default app;
+
 

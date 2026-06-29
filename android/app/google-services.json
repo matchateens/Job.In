@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "247458316538",
+    "project_id": "jobin-a41e9",
+    "storage_bucket": "jobin-a41e9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247458316538:android:36e2f1ee13920b35534943",
+        "android_client_info": {
+          "package_name": "com.jobin.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "247458316538-s7ladumf709rvin64catc51edv76lad2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaScB7mjv9pPZPAPxTOjwd5n0wDBjfGmY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "247458316538-s7ladumf709rvin64catc51edv76lad2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

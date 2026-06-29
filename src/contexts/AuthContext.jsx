@@ -6,8 +6,12 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   updateProfile,
+  GoogleAuthProvider,
+  signInWithCredential,
 } from 'firebase/auth';
-import { auth, googleProvider } from '../firebase';
+import { auth, googleProvider, googleWebClientId } from '../firebase';
+import { Capacitor } from '@capacitor/core';
+import { SocialLogin } from '@capgo/capacitor-social-login';
 
 const AuthContext = createContext(null);
 
@@ -29,7 +33,34 @@ export const AuthProvider = ({ children }) => {
     return unsubscribe;
   }, []);
 
-  const loginWithGoogle = () => signInWithPopup(auth, googleProvider);
+  const loginWithGoogle = async () => {
+    if (Capacitor.isNativePlatform()) {
+      // Inisialisasi Google Sign-In Native di perangkat mobile
+      await SocialLogin.initialize({
+        google: {
+          webClientId: googleWebClientId,
+        },
+      });
+
+      const response = await SocialLogin.login({
+        provider: 'google',
+        options: {
+          scopes: ['email', 'profile'],
+        },
+      });
+
+      const idToken = response?.result?.idToken;
+      if (!idToken) {
+        throw new Error('Gagal mendapatkan ID Token dari login Google.');
+      }
+
+      const credential = GoogleAuthProvider.credential(idToken);
+      return signInWithCredential(auth, credential);
+    } else {
+      // Gunakan Web SDK standar jika di peramban (browser)
+      return signInWithPopup(auth, googleProvider);
+    }
+  };
 
   const loginWithEmail = (email, password) =>
     signInWithEmailAndPassword(auth, email, password);
